@@ -62,6 +62,10 @@ on init
     symlink /storage/sdcard0 /storage/emulated/legacy
     symlink /storage/sdcard0 /mnt/shell/emulated
 
+    # Hardwareinfo
+    chmod 0660 /dev/hardwareinfo
+    chown system system /dev/hardwareinfo
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
