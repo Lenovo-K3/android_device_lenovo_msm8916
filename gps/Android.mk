@@ -16,6 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),lettuce)
+ifeq ($(TARGET_DEVICE),msm8916)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif

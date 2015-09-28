@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(call inherit-product-if-exists, vendor/yu/lettuce/lettuce-vendor.mk)
+$(call inherit-product-if-exists, vendor/lenovo/msm8916/msm8916-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -86,11 +86,6 @@ PRODUCT_PACKAGES += \
     AntHalService \
     com.dsi.ant.antradio_library \
     libantradio
-
-# Camera
-PRODUCT_PACKAGES += \
-    camera.msm8916 \
-    libmm-qcamera
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -184,23 +179,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     power.msm8916
 
-# Sensor HAL
-PRODUCT_PACKAGES += \
-    calmodule.cfg \
-    libcalmodule_akm.so \
-    libcalmodule_common \
-    sensors.msm8916
-
 # QC PROPRIETARY
 ifneq ($(QCPATH),)
 # proprietary wifi display, if available
 PRODUCT_BOOT_JARS += WfdCommon
-
-# Connectivity Engine support
-ifeq ($(BOARD_USES_QCNE),true)
-PRODUCT_PACKAGES += \
-    services-ext \
-    init.cne.rc
 
 PRODUCT_PROPERTY_OVERRIDES +=
     persist.cne.feature=4
@@ -222,10 +204,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.recovery.qcom.rc \
     ueventd.qcom.rc
-
-# Recovery
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    $(LOCAL_PATH)/lettuce-releasekey
 
 # RIL
 PRODUCT_PACKAGES += \

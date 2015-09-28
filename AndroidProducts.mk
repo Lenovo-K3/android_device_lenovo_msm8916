@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_lettuce.mk
+    $(LOCAL_DIR)/full_msm8916.mk

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/yu/lettuce
+LOCAL_PATH := device/lenovo/msm8916
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
@@ -84,14 +84,8 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # Camera
-BOARD_CAMERA_SENSORS := \
-    ov5670_q5v41b \
-    ov8865_q8v18a
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
-
-# CMHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/src
 
 # malloc implementation
 MALLOC_IMPL := dlmalloc
@@ -209,4 +203,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
--include vendor/yu/lettuce/BoardConfigVendor.mk
+-include vendor/lenovo/msm8916/BoardConfigVendor.mk
