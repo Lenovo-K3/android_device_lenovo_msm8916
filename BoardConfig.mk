@@ -45,17 +45,19 @@ TARGET_USES_64_BIT_BINDER := true
 TARGET_CPU_CORTEX_A53 := true
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
-BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_SEPARATED_DT := true
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_RAMDISK_OFFSET     := 0x01000000
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 TARGET_USES_UNCOMPRESSED_KERNEL := true
+TARGET_KERNEL_SOURCE := kernel/lenovo/msm8916
+TARGET_KERNEL_CONFIG := wt86518-perf_defconfig
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -63,6 +65,10 @@ BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 # Audio
 AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_USES_ALSA_AUDIO := true
+
+# Radio
+ADD_RADIO_FILES := true
+TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
@@ -188,6 +194,8 @@ TARGET_USES_WCNSS_CTRL := true
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME          := "wlan"
 
 # inherit from the proprietary version
 -include vendor/lenovo/msm8916/BoardConfigVendor.mk
