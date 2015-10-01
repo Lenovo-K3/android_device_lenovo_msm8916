@@ -123,17 +123,6 @@ PRODUCT_PACKAGES += \
     libqcomfm_jni \
     qcom.fmradio
 
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8916
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
-    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
-    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
-
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
@@ -163,6 +152,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
     $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
     $(LOCAL_PATH)/rootdir/ueventd.rc:root/ueventd.rc
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8916
@@ -203,13 +193,6 @@ PRODUCT_PROPERTY_OVERRIDES +=
     persist.cne.feature=4
 
 endif
-
-# Ramdisk
-PRODUCT_PACKAGES += \
-    init.crda.sh \
-    init.qcom.bt.sh \
-    init.qcom.coex.sh \
-    init.qcom.fm.sh
 
 # RIL
 PRODUCT_PACKAGES += \

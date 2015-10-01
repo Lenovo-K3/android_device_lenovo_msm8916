@@ -57,7 +57,7 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8916
-TARGET_KERNEL_CONFIG := wt86518-perf_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_A6000-64_defconfig
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -114,7 +114,6 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
-TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
 TARGET_NO_RPC := true
 
 # Init
@@ -166,9 +165,6 @@ BOARD_SEPOLICY_UNION += \
     wcnss_service.te \
     file_contexts \
     property_contexts
-
-# Time services
-BOARD_USES_QC_TIME_SERVICES := true
 
 # QC PROPRIETARY
 ifneq ($(QCPATH),)
