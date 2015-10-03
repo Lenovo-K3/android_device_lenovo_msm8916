@@ -171,6 +171,9 @@ ifneq ($(QCPATH),)
 BOARD_USES_QCNE := true
 endif
 
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
+
 # Video
 TARGET_HAVE_SIGNED_VENUS_FW := true
 
