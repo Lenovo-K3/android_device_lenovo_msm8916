@@ -43,7 +43,7 @@ PRODUCT_COPY_FILES += \
 
 # System Properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
@@ -166,12 +166,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
+    libc2dcolorconvert \
     libdashplayer \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libOmxVdecHevc \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw \
@@ -201,6 +204,10 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
+
+# Debug
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    camera2.portability.force_api=1
 
 # Wifi
 PRODUCT_PACKAGES += \
