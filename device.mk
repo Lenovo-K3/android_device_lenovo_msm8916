@@ -208,6 +208,7 @@ PRODUCT_PACKAGES += \
 # Debug
 ADDITIONAL_DEFAULT_PROPERTIES += \
     camera2.portability.force_api=1
+    ro.adb.secure=0
 
 # Wifi
 PRODUCT_PACKAGES += \
