@@ -65,7 +65,6 @@ TARGET_KERNEL_CONFIG := cyanogenmod_A6000_defconfig
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Audio
-AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 BOARD_USES_ALSA_AUDIO := true
 
 # Bluetooth
