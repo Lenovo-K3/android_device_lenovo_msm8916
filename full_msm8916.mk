@@ -25,5 +25,5 @@ $(call inherit-product, device/lenovo/msm8916/device.mk)
 PRODUCT_DEVICE := msm8916
 PRODUCT_NAME := full_msm8916
 PRODUCT_BRAND := Lenovo
-PRODUCT_MODEL := A6000
+PRODUCT_MODEL := Lenovo K30-T
 PRODUCT_MANUFACTURER := Lenovo

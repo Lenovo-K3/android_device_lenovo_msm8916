@@ -19,7 +19,7 @@ DEVICE_PROVISIONED=1
 ro.telephony.default_network=9
 ro.telephony.default_3g2g=0
 
-ro.sf.lcd_density=480
+ro.sf.lcd_density=320
 qemu.hw.mainkeys=1
 debug.sf.hw=0
 debug.egl.hw=0
