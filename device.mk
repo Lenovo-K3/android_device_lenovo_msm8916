@@ -43,7 +43,7 @@ PRODUCT_COPY_FILES += \
 
 # System Properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb
+    persist.sys.usb.config=mtp
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
@@ -132,10 +132,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl
 
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8916
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
     $(LOCAL_PATH)/rootdir/init.class_main.sh:root/init.class_main.sh \
@@ -156,6 +152,10 @@ PRODUCT_COPY_FILES += \
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8916
+
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8916
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -194,7 +194,6 @@ PRODUCT_BOOT_JARS += WfdCommon
 
 PRODUCT_PROPERTY_OVERRIDES +=
     persist.cne.feature=4
-
 endif
 
 # RIL
@@ -208,7 +207,6 @@ PRODUCT_PACKAGES += \
 # Debug
 ADDITIONAL_DEFAULT_PROPERTIES += \
     camera2.portability.force_api=1
-    ro.adb.secure=0
 
 # Wifi
 PRODUCT_PACKAGES += \

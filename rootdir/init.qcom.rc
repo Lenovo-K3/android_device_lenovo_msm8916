@@ -38,7 +38,7 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     # See storage config details at http://source.android.com/tech/storage/
-    #mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
@@ -53,8 +53,8 @@ on init
 
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
-    #export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    #export EMULATED_STORAGE_TARGET /storage/emulated
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
 
     # Support legacy paths
     symlink /storage/sdcard0 /sdcard

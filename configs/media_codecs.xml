@@ -310,7 +310,24 @@ ___________________________________________________
             <Limit name="bitrate" range="1-20000000" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
-        <MediaCodec name="OMX.qcom.video.decoder.hevcswvdec" type="video/hevc" >
+	<!-- DOLBY_UDC -->
+        <MediaCodec name="OMX.dolby.ac3.decoder" >
+            <Type name="audio/ac3" />
+            <Quirk name="needs-flush-before-disable" />
+            <Quirk name="requires-flush-complete-emulation" />
+        </MediaCodec>
+        <MediaCodec name="OMX.dolby.eac3.decoder" >
+            <Type name="audio/eac3" />
+            <Quirk name="needs-flush-before-disable" />
+            <Quirk name="requires-flush-complete-emulation" />
+        </MediaCodec>
+        <MediaCodec name="OMX.dolby.eac3_joc.decoder" >
+            <Type name="audio/eac3-joc" />
+            <Quirk name="needs-flush-before-disable" />
+            <Quirk name="requires-flush-complete-emulation" />
+        </MediaCodec>
+        <!-- DOLBY_UDC END -->
+ <!--       <MediaCodec name="OMX.qcom.video.decoder.hevcswvdec" type="video/hevc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
             <Limit name="size" min="64x64" max="1280x720" />
@@ -319,8 +336,7 @@ ___________________________________________________
             <Limit name="blocks-per-second" min="1" max="108300" />
             <Limit name="bitrate" range="1-3000000" />
             <Feature name="adaptive-playback" />
-        </MediaCodec>
+        </MediaCodec>  -->
     </Decoders>
-    <Include href="media_codecs_google_video_le.xml" />
-    <Include href="media_codecs_ffmpeg.xml" />
+    <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
