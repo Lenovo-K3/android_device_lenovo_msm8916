@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-$(call inherit-product-if-exists, device/lenovo/msm8916/vendor/msm8916-vendor.mk)
+$(call inherit-product-if-exists, vendor/lenovo/msm8916/msm8916-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -158,10 +158,6 @@ PRODUCT_COPY_FILES += \
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8916
-
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8916
 
 # Media
 PRODUCT_COPY_FILES += \
