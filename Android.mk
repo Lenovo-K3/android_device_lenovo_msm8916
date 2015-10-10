@@ -117,4 +117,9 @@ $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
     ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
 	    $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
 
+# TWRP
+$(shell mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/etc; \
+	 cp -a device/lenovo/msm8916/recovery/twrp.fstab \
+	     $(TARGET_RECOVERY_ROOT_OUT)/etc;)
+
 endif
