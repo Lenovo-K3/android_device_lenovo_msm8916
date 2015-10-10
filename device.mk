@@ -56,6 +56,10 @@ TARGET_SCREEN_WIDTH := 720
 $(call inherit-product, frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
+#twrp recovery
+PRODUCTY_COPY_FILES += \
+    device/lenovo/msm8916/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
+
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
