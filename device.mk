@@ -63,8 +63,10 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8916 \
     audio.r_submix.default \
     audio.usb.default \
+    audio_policy.msm8916 \
     libqcompostprocbundle \
     libqcomvisualizer \
+    libqcomvoiceprocessing \
     tinymix
 
 # Audio configuration
@@ -76,7 +78,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/Hdmi_cal.acdb:system/etc/acdbdata/QRD/Hdmi_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/Headset_cal.acdb:system/etc/acdbdata/QRD/Headset_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/Speaker_cal.acdb:system/etc/acdbdata/QRD/Speaker_cal.acdb \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
@@ -126,6 +127,9 @@ PRODUCT_PACKAGES += \
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal_engine.conf:system/etc/thermal_engine.conf
 
 # Keylayout
 PRODUCT_COPY_FILES += \

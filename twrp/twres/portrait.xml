@@ -1118,25 +1118,6 @@
 			</object>
 
 			<object type="button">
-				<condition var1="tw_partition_can_resize" op="=" var2="1" />
-				<placement x="%col1_x%" y="%row3_y%" />
-				<text>更改大小</text>
-				<actions>
-					<action function="set">tw_back=partitionoptions</action>
-					<action function="set">tw_action=resize</action>
-					<action function="set">tw_action_param=%tw_partition_mount_point%</action>
-					<action function="set">tw_has_action2=1</action>
-					<action function="set">tw_action2=getpartitiondetails</action>
-					<action function="set">tw_text1=Resize %tw_partition_name%?</action>
-					<action function="set">tw_text2=</action>
-					<action function="set">tw_action_text1=Resizing...</action>
-					<action function="set">tw_complete_text1=Resize Complete</action>
-					<action function="set">tw_slider_text=Swipe to Resize</action>
-					<action function="page">confirm_action</action>
-				</actions>
-			</object>
-
-			<object type="button">
 				<condition var1="tw_partition_can_repair" op="=" var2="1" />
 				<placement x="%col1_x%" y="%row4_y%" />
 				<text>修复</text>
@@ -2124,27 +2105,6 @@
 				<action function="page">decrypt</action>
 			</object>
 
-			<object type="button">
-				<placement x="%col1_x%" y="%system_ro_y%" />
-				<font resource="font" color="%text_color%" />
-				<condition var1="tw_mount_system_ro" op="=" var2="0" />
-				<text>挂载system为只读模式</text>
-				<image resource="checkbox_false" />
-				<action function="mountsystemtoggle">1</action>
-			</object>
-
-			<object type="button">
-				<placement x="%col1_x%" y="%system_ro_y%" />
-				<font resource="font" color="%text_color%" />
-				<condition var1="tw_mount_system_ro" op="!=" var2="0" />
-				<text>挂载system为只读模式</text>
-				<image resource="checkbox_true" />
-				<actions>
-					<action function="set">tw_lifetime_writes=2</action>
-					<action function="page">system_readonly_check</action>
-				</actions>
-			</object>
-
 			<object type="action">
 				<touch key="home" />
 				<action function="page">main</action>
@@ -2198,28 +2158,6 @@
 			<object type="action">
 				<action function="page">mount</action>
 				<action function="set">tw_busy=0</action>
-			</object>
-		</page>
-
-		<page name="system_readonly_check">
-			<object type="action">
-				<action function="checkpartitionlifetimewrites">/system</action>
-			</object>
-
-			<object type="action">
-				<condition var1="tw_lifetime_writes" var2="1" />
-				<actions>
-					<action function="mountsystemtoggle">0</action>
-					<action function="page">mount</action>
-				</actions>
-			</object>
-
-			<object type="action">
-				<condition var1="tw_lifetime_writes" var2="0" />
-				<actions>
-					<action function="set">tw_back=mount</action>
-					<action function="page">system_readonly</action>
-				</actions>
 			</object>
 		</page>
 
@@ -3669,72 +3607,6 @@
 					<action function="page">singleaction_page</action>
 				</actions>
 			</object>
-		</page>
-		<page name="system_readonly">
-			<object type="template" name="header" />
-
-			<object type="text">
-				<placement x="%center_x%" y="%row1_header_y%" placement="5" />
-				<text>TWRP发现system分区未更改。</text>
-			</object>
-
-			<object type="text">
-				<placement x="%center_x%" y="%row2_text_y%" placement="5" />
-				<text>TWRP可以保持system分区不更改</text>
-			</object>
-
-			<object type="text">
-				<placement x="%center_x%" y="%row3_text_y%" placement="5" />
-				<text>来使你安装官方更新更容易。</text>
-			</object>
-
-			<object type="text">
-				<placement x="%center_x%" y="%row4_text_y%" placement="5" />
-				<text>TWRP将不能防止官方ROM</text>
-			</object>
-
-			<object type="text">
-				<placement x="%center_x%" y="%row5_text_y%" placement="5" />
-				<text>替换TWRP，而且不会root你的设备。</text>
-			</object>
-
-			<object type="text">
-				<placement x="%center_x%" y="%row6_text_y%" placement="5" />
-				<text>安装刷机包或使用adb操作可能仍然</text>
-			</object>
-
-			<object type="text">
-				<placement x="%center_x%" y="%row7_text_y%" placement="5" />
-				<text>修改system分区。</text>
-			</object>
-
-			<object type="checkbox">
-				<condition var1="tw_is_encrypted" var2="0" />
-				<placement x="%col1_x%" y="%row8_text_y%" />
-				<text>在重启之前不显示这个画面</text>
-				<data variable="tw_never_show_system_ro_page" />
-			</object>
-
-			<object type="button">
-				<placement x="%col_center_x%" y="%row10_text_y%" />
-				<text>保持只读</text>
-				<actions>
-					<action function="mountsystemtoggle">1</action>
-					<action function="set">tw_page_done=1</action>
-					<action function="page">%tw_back%</action>
-				</actions>
-			</object>
-
-			<object type="slider">
-				<text>滑动以允许修改</text>
-				<actions>
-					<action function="mountsystemtoggle">0</action>
-					<action function="set">tw_page_done=1</action>
-					<action function="page">%tw_back%</action>
-				</actions>
-			</object>
-
-			<object type="template" name="footer" />
 		</page>
 	</pages>
 </recovery>
