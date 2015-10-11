@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DEVICE=lettuce
-VENDOR=yu
+DEVICE=msm8916
+VENDOR=lenovo
 
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
