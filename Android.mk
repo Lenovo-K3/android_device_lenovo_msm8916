@@ -17,8 +17,6 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),msm8916)
 
-#include device/lenovo/msm8916/kernel/AndroidKernel.mk
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
