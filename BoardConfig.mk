@@ -50,7 +50,7 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=disabled
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
@@ -174,20 +174,6 @@ TARGET_RIL_VARIANT := caf
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-    device/lenovo/msm8916/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    bluetooth_loader.te \
-    file.te \
-    healthd.te \
-    qseecomd.te \
-    surfaceflinger.te \
-    system_server.te \
-    wcnss_service.te \
-    file_contexts \
-    property_contexts
-
 # QC PROPRIETARY
 ifneq ($(QCPATH),)
 BOARD_USES_QCNE := true
@@ -195,9 +181,6 @@ endif
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
-
-#ODEX
-WITH_DEXPREOP := true
 
 # Video
 TARGET_HAVE_SIGNED_VENUS_FW := true

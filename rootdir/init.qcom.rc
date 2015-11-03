@@ -33,29 +33,13 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
 
 on init
-
-
     # Set permissions for persist partition
     mkdir /persist 0771 system system
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
-
+    
     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/sdcard1 /mnt/external_sd
-
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
+    
     # Hardwareinfo
     chmod 0660 /dev/hardwareinfo
     chown system system /dev/hardwareinfo
@@ -183,6 +167,9 @@ on boot
 on fs
 setprop ro.crypto.fuse_sdcard true
 
+    # Symbols required for TCL blobs
+    export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/lib/libsysutils_local.so"
+    export LD_PRELOAD "/system/lib64/libboringssl-compat.so /system/lib64/libsysutils_local.so"
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -811,14 +798,6 @@ service profiler_daemon /system/bin/profiler_daemon
     class late_start
     user root
     group root
-    disabled
-
-# virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
     disabled
 
 # Binding fuse mount point to /storage/emulated/legacy

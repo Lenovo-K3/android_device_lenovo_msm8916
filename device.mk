@@ -88,6 +88,11 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+
+PRODUCT_PACKAGES +=  libstlport
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -184,7 +189,9 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw \
-    qcmediaplayer
+    qcmediaplayer \
+    libqcmediaplayer \
+    libextmedia_jni
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
