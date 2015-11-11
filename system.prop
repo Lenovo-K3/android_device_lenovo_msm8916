@@ -16,8 +16,14 @@ persist.rild.nitz_short_ons_3=
 persist.radio.rat_on=combine
 ril.subscription.types=RUIM
 DEVICE_PROVISIONED=1
-ro.telephony.default_network=9
+ro.telephony.default_network=9,1
 ro.telephony.default_3g2g=0
+
+# perf
+ro.min_freq_0=960000
+ro.min_freq_4=800000
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.telephony.ril.config=simactivation
 
 ro.sf.lcd_density=320
 qemu.hw.mainkeys=1
@@ -46,13 +52,11 @@ mmp.enable.3g2=true
 media.aac_51_output_enabled=true
 mm.enable.qcom_parser=3407871
 media.stagefright.use-awesome=false
-persist.camera.pip.support=0
 
 ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
+persist.data.qmi.adb_logmask=0
 persist.timed.enable=true
 ro.opengles.version=196608
-ro.qualcomm.cabl=0
 telephony.lteOnCdmaDevice=0
 bluetooth.hfp.client=1
 persist.fuse_sdcard=true
@@ -93,5 +97,7 @@ audio.offload.disable=1
 persist.radio.ratstr=true
 persist.radio.apm_sim_not_pwdn=1
 persist.radio.restore_mode_pref=1
+ro.config.always_show_roaming=true
+ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
 persist.radio.ignore_dom_time=5
 persist.radio.multisim.config=dsds
