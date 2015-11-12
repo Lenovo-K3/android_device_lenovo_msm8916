@@ -33,3 +33,61 @@ on boot
 
     chown root system /sys/devices/soc.0/78b9000.i2c/i2c-5/5-005d/keypad_enable
     chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-005d/keypad_enable
+
+on init
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+
+service imsqmidaemon /system/bin/imsqmidaemon
+    class main
+    user system
+    socket ims_qmid stream 0660 system radio
+    group radio net_raw log qcom_diag
+
+service imsdatadaemon /system/bin/imsdatadaemon
+    class main
+    user system
+    socket ims_datad stream 0660 system radio
+    group system wifi radio inet net_raw log qcom_diag net_admin
+    disabled
+
+on property:sys.ims.QMI_DAEMON_STATUS=1
+    start imsdatadaemon
+
+service ims_rtp_daemon /system/bin/ims_rtp_daemon
+   class main
+   user system
+   socket ims_rtpd stream 0660 system radio
+   group radio net_raw diag qcom_diag log
+   disabled
+
+service imscmservice /system/bin/imscmservice
+   class main
+   user system
+   group radio net_raw diag qcom_diag log
+   disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+    start imscmservice
+
+on post-fs-data
+     mkdir /data/dpm/nsrm 0771 system system
+     chown system system /data/dpm/nsrm
+
+service cnd /system/bin/cnd
+    class late_start
+    socket cnd stream 660 root inet
+
+service dpmd /system/bin/dpmd
+    class late_start
+    socket dpmd stream 660 root system
+
+service qcom-c_main-sh /system/bin/sh /init.class_main.sh
+    class main
+    user root
+    oneshot
+
+on property:vold.decrypt=trigger_restart_framework
+    start qcom-c_main-sh
+    start config_bluetooth
+    start wcnss-service

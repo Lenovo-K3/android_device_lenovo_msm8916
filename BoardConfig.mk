@@ -95,10 +95,6 @@ ifeq ($(HOST_OS),linux)
 endif
 endif
 
-# Radio
-ADD_RADIO_FILES := true
-TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
-
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -162,6 +158,7 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_CUSTOM_THEME := device/lenovo/msm8916/recovery/twres
 
 # Releasetools
+ADD_RADIO_FILES := true
 TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 
 # RIL

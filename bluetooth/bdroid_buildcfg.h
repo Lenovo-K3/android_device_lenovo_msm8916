@@ -17,7 +17,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "Android 6.0"
+#define BTM_DEF_LOCAL_NAME   "Lenovo K30-T"
 #define BLUETOOTH_QTI_SW TRUE
 // Disables read remote device feature
 #define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
