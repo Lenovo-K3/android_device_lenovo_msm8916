@@ -300,6 +300,21 @@ on boot
     mkdir /data/misc/display 0770 system graphics
     mkdir /persist/display 0770 system graphics
 
+    chown system system /sys/class/sensors/MPU6050-accel/enable
+    chmod 0660 /sys/class/sensors/MPU6050-accel/enable
+
+    chown system system /sys/class/sensors/proximity/enable
+    chmod 0660 /sys/class/sensors/proximity/enable
+
+    chown system system /sys/class/sensors/light/enable
+    chmod 0660 /sys/class/sensors/light/enable
+
+    chown system system /sys/class/sensors/akm09911-mag/enable
+    chmod 0660 /sys/class/sensors/akm09911-mag/enable
+
+    chown system system /sys/class/sensors/MPU6050-gyro/enable
+    chmod 0660 /sys/class/sensors/MPU6050-gyro/enable
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
