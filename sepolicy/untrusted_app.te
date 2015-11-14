@@ -1,6 +1,6 @@
 allow untrusted_app persist_file:dir getattr;
 allow untrusted_app device:dir { open read };
-allow untrusted_app block_device:dir open;
+allow untrusted_app block_device:dir { open read };
 allow untrusted_app init:dir search;
 allow untrusted_app init:file { read open getattr };
 allow untrusted_app kernel:dir search;

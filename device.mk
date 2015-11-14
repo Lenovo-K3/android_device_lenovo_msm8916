@@ -112,6 +112,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
+# rild
+PRODUCT_PACKAGES += \
+    libmsm8916
+
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
     CNEService \
