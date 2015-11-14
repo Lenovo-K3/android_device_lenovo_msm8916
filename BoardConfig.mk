@@ -168,11 +168,14 @@ PROTOBUF_SUPPORTED := true
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-    $(DEVICE_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += device/lenovo/msm8916/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     mm-qcamerad.te \
+    debuggerd.te \
+    init.te \
+    mediaserver.te \
+    untrusted_app.te
 
 # QC PROPRIETARY
 ifneq ($(QCPATH),)

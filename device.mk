@@ -95,6 +95,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstlport
 
+# TCM
+PRODUCT_PACKAGES += tcmiface
+
 # Sensor HAL
 PRODUCT_PACKAGES += \
     calmodule.cfg \
