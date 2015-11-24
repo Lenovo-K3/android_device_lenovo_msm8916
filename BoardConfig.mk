@@ -81,6 +81,9 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # malloc implementation
 MALLOC_IMPL := dlmalloc
 
+# FM radio
+TARGET_FM_LEGACY_PATCHLOADER := true
+
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
@@ -175,7 +178,9 @@ BOARD_SEPOLICY_UNION += \
     debuggerd.te \
     init.te \
     mediaserver.te \
-    untrusted_app.te
+    untrusted_app.te \
+    ueventd.te \
+    qti_init_shell.te
 
 # QC PROPRIETARY
 ifneq ($(QCPATH),)
