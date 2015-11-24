@@ -98,11 +98,6 @@ PRODUCT_PACKAGES += \
 # TCM
 PRODUCT_PACKAGES += tcmclient
 
-PRODUCT_PACKAGES += \
-    calmodule.cfg \
-    libcalmodule_common \
-    sensors.msm8916
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
