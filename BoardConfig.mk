@@ -81,9 +81,6 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # malloc implementation
 MALLOC_IMPL := dlmalloc
 
-# FM radio
-TARGET_FM_LEGACY_PATCHLOADER := true
-
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
