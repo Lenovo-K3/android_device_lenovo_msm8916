@@ -49,12 +49,7 @@ LOCAL_SRC_FILES :=	\
 		sensors_XML.cpp
 
 LOCAL_C_INCLUDES += external/libxml2/include	\
-
-ifeq ($(call is-platform-sdk-version-at-least,20),true)
-    LOCAL_C_INCLUDES += external/icu/icu4c/source/common
-else
-    LOCAL_C_INCLUDES += external/icu4c/common
-endif
+		    external/icu/icu4c/source/common
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libdl libxml2 libutils
 
@@ -91,6 +86,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_ETC)
 LOCAL_SRC_FILES := calmodule.cfg
 
 include $(BUILD_PREBUILT)
+
 
 endif #BUILD_TINY_ANDROID
 endif #TARGET_BOARD_PLATFORM
