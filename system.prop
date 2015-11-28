@@ -14,9 +14,9 @@ persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 persist.radio.rat_on=combine
-ril.subscription.types=NV,RUIM
+ril.subscription.types=RUIM
 DEVICE_PROVISIONED=1
-ro.telephony.default_network=22
+ro.telephony.default_network=9
 persist.radio.multisim.config=dsds
 
 # perf
@@ -92,7 +92,6 @@ ro.sys.fw.empty_app_percent=50
 ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
-ro.telephony.ril.config=simactivation
 persist.backgrounddata.enable=false
 audio.offload.disable=1
 persist.radio.ratstr=true

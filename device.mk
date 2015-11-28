@@ -95,9 +95,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstlport
 
-# TCM
-PRODUCT_PACKAGES += tcmclient
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -105,21 +102,6 @@ PRODUCT_PACKAGES += \
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
-
-# rild
-PRODUCT_PACKAGES += \
-    libmsm8916
-
-# Connectivity Engine support (CNE)
-PRODUCT_PACKAGES += \
-    CNEService \
-    cneapiclient \
-    com.quicinc.cne
-
-# DPM
-PRODUCT_PACKAGES += \
-    com.qti.dpmframework \
-    dpmapi
 
 # CRDA
 PRODUCT_PACKAGES += \
@@ -146,6 +128,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
+
+# RIL symbols
+PRODUCT_PACKAGES += \
+    libmsm8916
 
 # IRSC
 PRODUCT_COPY_FILES += \

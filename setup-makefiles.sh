@@ -157,7 +157,7 @@ EOF
 
 LOCAL_PATH := \$(call my-dir)
 
-ifeq (\$(TARGET_DEVICE),lettuce)
+ifeq (\$(TARGET_DEVICE),msm8916)
 ifeq (\$(QCPATH),)
 
 include \$(CLEAR_VARS)
