@@ -116,7 +116,10 @@ EXTENDED_FONT_FOOTPRINT := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # GPS
+TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
 TARGET_NO_RPC := true
+USE_DEVICE_SPECIFIC_LOC_API := true
+USE_DEVICE_SPECIFIC_GPS := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
@@ -156,8 +159,11 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 TARGET_LDPRELOAD := libNimsWrap.so
 
 # RIL
+PROTOBUF_SUPPORTED := false
 TARGET_RIL_VARIANT := caf
-PROTOBUF_SUPPORTED := true
+SIM_COUNT := 2
+TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
+TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
@@ -171,7 +177,8 @@ BOARD_SEPOLICY_UNION += \
     mediaserver.te \
     untrusted_app.te \
     ueventd.te \
-    qti_init_shell.te
+    qti_init_shell.te \
+    kernel.te
 
 # QC PROPRIETARY
 ifneq ($(QCPATH),)

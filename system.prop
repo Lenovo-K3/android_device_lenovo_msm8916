@@ -17,7 +17,6 @@ persist.radio.rat_on=combine
 ril.subscription.types=RUIM
 DEVICE_PROVISIONED=1
 ro.telephony.default_network=9
-persist.radio.multisim.config=dsds
 
 # perf
 ro.min_freq_0=960000
