@@ -97,9 +97,7 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images \
-    librmnetctl \
-    rmnetcli
+    charger_res_images
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -135,10 +133,6 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
-# RIL symbols
-PRODUCT_PACKAGES += \
-    libmsm8916
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
@@ -168,7 +162,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.bms.sh \
-    init.qcom.fm.sh \
     init.qcom.power.rc \
     init.qcom.rc \
     init.qcom.usb.rc \

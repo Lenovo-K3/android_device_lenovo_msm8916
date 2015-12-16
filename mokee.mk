@@ -1,4 +1,4 @@
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,20 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := $(call my-dir)
+$(call inherit-product, device/lenovo/msm8916/full_msm8916.mk)
 
-include $(CLEAR_VARS)
+# Inherit some common CM stuff.
+$(call inherit-product, vendor/mk/config/common_full_phone.mk)
 
-LOCAL_SRC_FILES := \
-    ril.cpp
+PRODUCT_NAME := mk_msm8916
+BOARD_VENDOR := lenovo
+PRODUCT_DEVICE := msm8916
 
-LOCAL_SHARED_LIBRARIES := libbinder
+PRODUCT_GMS_CLIENTID_BASE := android-micromax
 
-LOCAL_MODULE := libmsm8916
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-
-LOCAL_CFLAGS_arm64 += -DLIBLGE_64BIT
-
-include $(BUILD_SHARED_LIBRARY)
-
+TARGET_VENDOR_PRODUCT_NAME := Lenovo
+TARGET_VENDOR_DEVICE_NAME := Lenovo
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=Lenovo PRODUCT_NAME=Lenovo

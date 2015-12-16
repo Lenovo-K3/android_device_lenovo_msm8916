@@ -22,6 +22,7 @@ $(call add-radio-file,images/sbl1.mbn)
 $(call add-radio-file,images/tz.mbn)
 endif
 
+ifneq ($(FORCE_32_BIT),true)
 #Create symbolic links
 $(shell mkdir -p $(TARGET_OUT)/vendor/lib; \
         rm $(TARGET_OUT)/vendor/lib/libEGL_adreno.so; \
@@ -32,3 +33,4 @@ $(shell mkdir -p $(TARGET_OUT)/vendor/lib64; \
         rm $(TARGET_OUT)/vendor/lib64/libEGL_adreno.so; \
         ln -sf /system/vendor/lib64/egl/libEGL_adreno.so \
         $(TARGET_OUT)/vendor/lib64/libEGL_adreno.so)
+endif

@@ -38,7 +38,7 @@ on early-init
 on init
 
     # Boringssl hacks
-    export LD_PRELOAD "libboringssl-compat.so:libmsm8916.so"
+    export LD_PRELOAD "libboringssl-compat.so"
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -58,6 +58,9 @@ on post-fs
 on post-fs-data
 
     mkdir /data/misc/camera 0770 camera camera
+
+    # Create fm radio data file
+    mkdir /data/misc/fm 0771 system system
 
     #Create PERFD deamon related dirs
     mkdir /data/misc/perfd 0770 root system
@@ -162,6 +165,8 @@ on post-fs-data
     #Create a folder for SRS to be able to create a usercfg file
     mkdir /data/data/media 0770 media media
 
+    mkdir /data/diag_logs 0777 system system 5
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -180,16 +185,16 @@ on boot
     chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_lpm
     chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_btwrite
     chown system system /sys/module/sco/parameters/disable_esco
-    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chown system system /sys/module/radio_iris_transport/parameters/fmsmd_set
+    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
-    chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /proc/bluetooth/sleep/proto
     chown bluetooth bluetooth /dev/ttyHS0
     chmod 0660 /sys/module/hci_uart/parameters/ath_lpm
     chmod 0660 /sys/module/hci_uart/parameters/ath_btwrite
+    chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
@@ -532,6 +537,12 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
+on property:ro.product.cpu.abi=arm64-v8a
+    setprop rild.libpath /system/vendor/lib64/libril-qc-qmi-1.so
+
+on property:ro.product.cpu.abi=armeabi-v7a
+    setprop rild.libpath /system/vendor/lib/libril-qc-qmi-1.so
+
 service ril-daemon1 /system/bin/rild -c 2
     class main
     socket rild2 stream 660 root radio
@@ -589,7 +600,7 @@ service perfd /system/bin/perfd
    group root
    disabled
 
-service thermal-engine /system/bin/thermal-engine
+service thermal-engine /vendor/bin/thermal-engine
    class main
    user root
    group root
