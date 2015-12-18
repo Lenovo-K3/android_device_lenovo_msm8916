@@ -18,6 +18,7 @@ persist.radio.apm_sim_not_pwdn=1
 rild.libargs=-d /dev/smd0
 ro.telephony.default_3g2g=0
 persist.data.target=dpm1
+ril.subscription.types=NV,RUIM
 ro.use_data_netmgrd=true
 
 # Radio
@@ -28,6 +29,9 @@ persist.radio.ecc_hard_count=1
 ro.telephony.ril.config=simactivation
 ro.ril.multi_rat_capable=true
 persist.data.qmi.adb_logmask=0
+
+# Factory reset protection
+ro.frp.pst=/dev/block/bootdevice/by-name/config
 
 # perf
 ro.min_freq_0=960000
