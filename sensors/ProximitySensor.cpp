@@ -168,6 +168,14 @@ int ProximitySensor::enable(int32_t, int en) {
             ALOGE("invalid sensor index:%d\n", sensor_index);
             return -1;
         }
+
+        mEnabled = flags;
+        /**
+         * this is an on-change sensor. it might not get a reading for a while
+         * and Android requires a reading as soon as it is turned on.
+         * re-send the last reading.
+         */
+        mHasPendingEvent = flags;
         fd = open(input_sysfs_path, O_RDWR);
         if (fd >= 0) {
             char buf[2];
@@ -179,11 +187,21 @@ int ProximitySensor::enable(int32_t, int en) {
             }
             write(fd, buf, sizeof(buf));
             close(fd);
-            mEnabled = flags;
-            return 0;
         } else {
             ALOGE("open %s failed.(%s)\n", input_sysfs_path, strerror(errno));
             return -1;
+        }
+
+        if (mEnabled) {
+            struct input_absinfo absinfo;
+            int rc = ioctl(data_fd, EVIOCGABS(EVENT_TYPE_PROXIMITY), &absinfo);
+            if (rc < 0) {
+                ALOGE("ProximitySensor: EVIOCGABS error: %d", errno);
+                return -errno;
+            }
+
+            mPendingEvent.distance = indexToValue(absinfo.value);
+            return 0;
         }
     }
     return 0;
@@ -222,11 +240,31 @@ int ProximitySensor::readEvents(sensors_event_t* data, int count)
                 }
             }
         } else if (type == EV_SYN) {
-            mPendingEvent.timestamp = timevalToNano(event->time);
-            if (mEnabled) {
-                *data++ = mPendingEvent;
-                count--;
-                numEventReceived++;
+            switch ( event->code ){
+                case SYN_TIME_SEC:
+                    {
+                        mUseAbsTimeStamp = true;
+                        report_time = event->value*1000000000LL;
+                    }
+                break;
+                case SYN_TIME_NSEC:
+                    {
+                        mUseAbsTimeStamp = true;
+                        mPendingEvent.timestamp = report_time+event->value;
+                    }
+                break;
+                case SYN_REPORT:
+                    {
+                        if (mEnabled && mUseAbsTimeStamp) {
+                            *data++ = mPendingEvent;
+                            numEventReceived++;
+                            count--;
+                            mUseAbsTimeStamp = false;
+                        } else {
+                            ALOGE_IF(!mUseAbsTimeStamp, "ProximitySensor: timestamp not received");
+                        }
+                    }
+                break;
             }
         } else {
             ALOGE("ProximitySensor: unknown event (type=%d, code=%d)",

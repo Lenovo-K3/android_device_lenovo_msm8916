@@ -52,13 +52,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // conversion of magnetic data to uT units
 #define CONVERT_MAG				(1.0f/16.0f)
-#define CALIBRATE_ERROR_MAGIC		0.000314
 
 /*****************************************************************************/
 CompassSensor::CompassSensor(struct SensorContext *context)
 	: SensorBase(NULL, NULL, context),
 	  mEnabled(0),
-	  mInputReader(4),
+	  mInputReader(6),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0),
 	  res(CONVERT_MAG)
@@ -189,18 +188,23 @@ again:
 				mPendingEvent.magnetic.z = value * res;
 			}
 		} else if (type == EV_SYN) {
-			mPendingEvent.timestamp = timevalToNano(event->time);
-			if (mEnabled) {
-				if (mPendingEvent.timestamp >= mEnabledTime) {
+			if (event->code ==  SYN_TIME_SEC) {
+				mUseAbsTimeStamp = true;
+				report_time = event->value*1000000000LL;
+			} else if (event->code ==  SYN_TIME_NSEC) {
+				mUseAbsTimeStamp = true;
+				mPendingEvent.timestamp = report_time+event->value;
+			} else if (mEnabled) {
+				if (!mUseAbsTimeStamp) {
+					ALOGE("CompassSensor: timestamp not received");
+				} else if (mPendingEvent.timestamp >= mEnabledTime) {
 					raw = mPendingEvent;
 
 					if (algo != NULL) {
 						if (algo->methods->convert(&raw, &result, NULL)) {
-							ALOGE("Calibration failed.");
-							result.magnetic.x = CALIBRATE_ERROR_MAGIC;
-							result.magnetic.y = CALIBRATE_ERROR_MAGIC;
-							result.magnetic.z = CALIBRATE_ERROR_MAGIC;
-							result.magnetic.status = 0;
+							ALOGW("Calibration in progress...");
+							result = raw;
+							result.magnetic.status = SENSOR_STATUS_UNRELIABLE;
 						}
 					} else {
 						result = raw;
