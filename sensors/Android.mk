@@ -41,6 +41,7 @@ LOCAL_SRC_FILES :=	\
 		CompassSensor.cpp		\
 		Accelerometer.cpp				\
 		Gyroscope.cpp				\
+		Bmp180.cpp				\
 		InputEventReader.cpp \
 		CalibrationManager.cpp \
 		NativeSensorManager.cpp \
@@ -85,6 +86,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_ETC)
 LOCAL_SRC_FILES := calmodule.cfg
 
 include $(BUILD_PREBUILT)
+
 
 endif #BUILD_TINY_ANDROID
 endif #TARGET_BOARD_PLATFORM
