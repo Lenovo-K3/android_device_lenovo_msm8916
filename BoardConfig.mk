@@ -29,7 +29,7 @@ TARGET_NO_BOOTLOADER := true
 
 # CPU
 ifneq ($(FORCE_32_BIT),true)
-#TARGET_BOARD_SUFFIX := _64
+TARGET_BOARD_SUFFIX := _64
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -188,10 +188,10 @@ BOARD_SEPOLICY_UNION += \
     debuggerd.te \
     healthd.te \
     init.te \
+    kernel.te \
     keystore.te \
     mediaserver.te \
     mm-qcamerad.te \
-    kernel.te \
     qti_init_shell.te \
     servicemanager.te \
     sysinit.te \

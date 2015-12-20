@@ -1,6 +1,6 @@
 allow sysinit system_data_file:file { write open append };
 allow sysinit resourcecache_data_file:dir search;
 allow sysinit zygote_exec:file { getattr execute read open execute_no_trans };
-allow sysinit dalvikcache_data_file:file { execute create unlink };
+allow sysinit dalvikcache_data_file:file { create unlink };
 allow sysinit dalvikcache_data_file:dir { write add_name remove_name };
 allow sysinit servicemanager:binder call;

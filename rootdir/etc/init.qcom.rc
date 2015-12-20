@@ -492,6 +492,11 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
+service loc_launcher /system/bin/loc_launcher
+    #loc_launcher will start as root and set its uid to gps
+    class late_start
+    group gps inet net_raw qcom_diag net_admin wifi
+
 service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    class late_start
    user root
@@ -566,13 +571,13 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
 
-service perfd /system/bin/perfd
+service perfd /system/vendor/bin/perfd
    class main
    user root
    group root
    disabled
 
-service thermal-engine /vendor/bin/thermal-engine
+service thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    group root
