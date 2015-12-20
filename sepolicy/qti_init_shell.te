@@ -1,1 +1,2 @@
 allow qti_init_shell apk_data_file:file { write };
+allow qti_init_shell vm_bms_device:chr_file { getattr };

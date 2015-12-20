@@ -35,15 +35,3 @@ $(shell mkdir -p $(TARGET_OUT)/vendor/lib64; \
         $(TARGET_OUT)/vendor/lib64/libEGL_adreno.so)
 endif
 
-DATA_IMAGES := \
-    GGG.APK GGG.APK
-
-DATA_SYMLINKS := $(addprefix $(TARGET_OUT_DATA)/app/,$(notdir $(DATA_IMAGES)))
-$(DATA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "vendor apps link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /system/vendor/app/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(DATA_SYMLINKS)
-

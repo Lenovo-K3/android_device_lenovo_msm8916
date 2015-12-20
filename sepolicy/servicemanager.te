@@ -1,0 +1,4 @@
+allow servicemanager sysinit:dir { search };
+allow servicemanager sysinit:file { read open };
+allow servicemanager sysinit:process { getattr };
+

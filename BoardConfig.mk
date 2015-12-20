@@ -185,16 +185,20 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/lenovo/msm8916/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    mm-qcamerad.te \
-    healthd.te \
     debuggerd.te \
+    healthd.te \
     init.te \
     keystore.te \
     mediaserver.te \
-    untrusted_app.te \
-    ueventd.te \
+    mm-qcamerad.te \
+    kernel.te \
     qti_init_shell.te \
-    kernel.te
+    servicemanager.te \
+    sysinit.te \
+    system_server.te \
+    tee.te \
+    ueventd.te \
+    untrusted_app.te
 
 # QC PROPRIETARY
 ifneq ($(QCPATH),)
