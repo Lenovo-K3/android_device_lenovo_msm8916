@@ -177,7 +177,7 @@ TARGET_LDPRELOAD := libNimsWrap.so
 
 # RIL
 TARGET_RIL_VARIANT := caf
-FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
+PROTOBUF_SUPPORTED := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
