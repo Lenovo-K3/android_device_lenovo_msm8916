@@ -59,9 +59,6 @@ on post-fs-data
 
     mkdir /data/misc/camera 0770 camera camera
 
-    # Create fm radio data file
-    mkdir /data/misc/fm 0771 system system
-
     #Create PERFD deamon related dirs
     mkdir /data/misc/perfd 0770 root system
     chmod 2770 /data/misc/perfd
@@ -185,7 +182,6 @@ on boot
     chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_lpm
     chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_btwrite
     chown system system /sys/module/sco/parameters/disable_esco
-    chown system system /sys/module/radio_iris_transport/parameters/fmsmd_set
     chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
@@ -194,7 +190,6 @@ on boot
     chown bluetooth bluetooth /dev/ttyHS0
     chmod 0660 /sys/module/hci_uart/parameters/ath_lpm
     chmod 0660 /sys/module/hci_uart/parameters/ath_btwrite
-    chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
@@ -374,7 +369,12 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
 on property:bluetooth.hciattach=true
     start hciattach
 
+# FM
+on property:bluetooth.status=on
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
+
 on property:bluetooth.hciattach=false
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
     setprop bluetooth.status off
 
 # QMUX must be in multiple groups to support external process connections
