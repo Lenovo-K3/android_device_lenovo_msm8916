@@ -181,22 +181,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libdivxdrmdecrypt \
     libc2dcolorconvert \
-    libdashplayer \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libOmxVdecHevc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw \
-    qcmediaplayer \
-    libqcmediaplayer \
-    libextmedia_jni
-
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
+    libOmxVidcCommon \
+    libstagefrighthw
 
 # Power HAL
 PRODUCT_PACKAGES += \
