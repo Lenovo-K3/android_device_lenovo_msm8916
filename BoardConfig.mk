@@ -104,17 +104,6 @@ MALLOC_IMPL := dlmalloc
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
-# Dexopt, only if we can fit that in
-ifneq ($(TARGET_TRANSPARENT_COMPRESSION_METHOD),)
-ifeq ($(HOST_OS),linux)
-    ifeq ($(TARGET_BUILD_VARIANT),user)
-        ifeq ($(WITH_DEXPREOPT),)
-            WITH_DEXPREOPT := true
-        endif
-    endif
-endif
-endif
-
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
