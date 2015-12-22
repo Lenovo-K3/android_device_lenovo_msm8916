@@ -320,37 +320,14 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
     user root
     oneshot
 
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system
-    disabled
-    oneshot
-
-service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
-    class late_start
-    group radio wifi inet
-    disabled
-    oneshot
-
-on property:persist.data.ds_fmc_app.mode=1
-    start ds_fmc_appd
-
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
-    disabled
-
-on property:ro.boot.emmc=true
-    start rmt_storage
 
 service rfs_access /system/bin/rfs_access
    class core
    user system
    group system net_raw
-
-on property:ro.boot.emmc=true
-    start rfs_access
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
     class core
@@ -479,16 +456,6 @@ service dhcpcd_bnep3 /system/bin/dhcpcd -BKLG
     oneshot
 
 service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
-
-service dhcpcd_eth0 /system/bin/dhcpcd -aABDKL
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_eth0 /system/bin/dhcpcd -n
-    class late_start
     disabled
     oneshot
 
@@ -622,8 +589,3 @@ service wcnss-service /system/bin/wcnss_service
     user system
     group system wifi radio
     oneshot
-
-service msm_irqbalance /system/bin/msm_irqbalance -p 0,0,0,0,1,1,1,1
-    class core
-    user root
-    group root
