@@ -5,19 +5,20 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 LOCAL_PATH := device/lenovo/msm8916
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
-TARGET_OTA_ASSERT_DEVICE := Kraft-T,K30T,K30-T,A6000,Kraft-W,Kraft-C,k30t,msm8916,Kraft-A6000
+TARGET_OTA_ASSERT_DEVICE := Kraft-T,Kraft-W,Kraft-TM,K30-T,K30-W,K30-TM,K30T,K30W,K30TM,A6000,msm8916
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
@@ -138,14 +139,14 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_CACHEIMAGE_PARTITION_SIZE := 67108864
-BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2147483648
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13042155008
+BOARD_CACHEIMAGE_PARTITION_SIZE := 67108864
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom

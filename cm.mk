@@ -1,3 +1,4 @@
+#
 # Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 $(call inherit-product, device/lenovo/msm8916/full_msm8916.mk)
 
@@ -19,7 +21,7 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 PRODUCT_NAME := cm_msm8916
 BOARD_VENDOR := lenovo
-PRODUCT_DEVICE := msm8916
+PRODUCT_DEVICE := Music Lemon
 
 PRODUCT_GMS_CLIENTID_BASE := android-micromax
 
